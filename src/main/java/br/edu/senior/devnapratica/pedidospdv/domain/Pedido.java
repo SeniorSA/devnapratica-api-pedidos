@@ -8,7 +8,7 @@ public class Pedido {
 
 	private Cliente cliente;
 
-	private List<Produto> produtos;
+	private List<ItemPedido> itens;
 
 	private StatusPedido status;
 
@@ -28,12 +28,12 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public List<ItemPedido> getItens() {
+		return itens;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	public StatusPedido getStatus() {

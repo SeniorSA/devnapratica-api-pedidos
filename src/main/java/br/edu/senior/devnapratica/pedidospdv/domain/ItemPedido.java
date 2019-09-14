@@ -1,9 +1,12 @@
 package br.edu.senior.devnapratica.pedidospdv.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ItemPedido {
 
 	private Long id;
 	
+	@JsonIgnore
 	private Pedido pedido;
 	
 	private Produto produto;

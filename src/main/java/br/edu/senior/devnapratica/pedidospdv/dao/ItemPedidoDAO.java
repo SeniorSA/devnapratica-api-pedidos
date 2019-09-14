@@ -14,7 +14,7 @@ import br.edu.senior.devnapratica.pedidospdv.domain.ItemPedido;
 @Component
 public class ItemPedidoDAO {
 
-	private static AtomicLong idSequence = new AtomicLong(0L);
+	private static AtomicLong idSequence = new AtomicLong(1L);
 	private HashMap<Long, ItemPedido> itemPedidosRegistrados = new LinkedHashMap<>();
 
 	public List<ItemPedido> buscarTodos() {
@@ -22,6 +22,9 @@ public class ItemPedidoDAO {
 	}
 
 	public Optional<ItemPedido> buscar(Long itemPedidoId) {
+		if (itemPedidoId == null) {
+			return Optional.empty();
+		}
 		return Optional.ofNullable(itemPedidosRegistrados.get(itemPedidoId));
 	}
 

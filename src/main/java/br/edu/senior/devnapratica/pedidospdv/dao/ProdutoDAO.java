@@ -14,7 +14,7 @@ import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
 @Component
 public class ProdutoDAO {
 
-	private static AtomicLong idSequence = new AtomicLong(0L);
+	private static AtomicLong idSequence = new AtomicLong(1L);
 	private HashMap<Long, Produto> produtosRegistrados = new LinkedHashMap<>();
 
 	public List<Produto> buscarTodos() {
@@ -22,6 +22,9 @@ public class ProdutoDAO {
 	}
 	
 	public Optional<Produto> buscar(Long produtoId) {
+		if (produtoId == null) {
+			return Optional.empty();
+		}
 		return Optional.ofNullable(produtosRegistrados.get(produtoId));
 	}
 	

@@ -14,7 +14,7 @@ import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
 @Component
 public class ClienteDAO {
 
-	private static AtomicLong idSequence = new AtomicLong(0L);
+	private static AtomicLong idSequence = new AtomicLong(1L);
 	private HashMap<Long, Cliente> clientesRegistrados = new LinkedHashMap<>();
 
 	public List<Cliente> buscarTodos() {
@@ -22,6 +22,9 @@ public class ClienteDAO {
 	}
 	
 	public Optional<Cliente> buscar(Long clienteId) {
+		if (clienteId == null) {
+			return Optional.empty();
+		}
 		return Optional.ofNullable(clientesRegistrados.get(clienteId));
 	}
 	
