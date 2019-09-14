@@ -36,7 +36,7 @@ Desenvolver uma API RESTful que permita a criação de pedidos por um cliente ca
 |------|-------------|-----|-------------------|
 | Listar todos/filtrar | `GET` | **/v1/clientes** | 200 |
 | Salvar | `POST` | **/v1/clientes** | 200 |
-| Buscar | `GET` | **/v1/clientes/{clienteId}** | 204 |
+| Buscar | `GET` | **/v1/clientes/{clienteId}** | 200 (ou 404) |
 | Alterar | `PUT` | **/v1/clientes/{clienteId}** | 200 |
 | Excluir/Deletar | `DELETE` | **/v1/clientes/{clienteId}** | 204 |
 
