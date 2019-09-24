@@ -1,9 +1,13 @@
 # DEV na Pática Senior - API Pedidos
 
-Projeto criado no DEV na Prática Senior aulas 02 e 03.
+Projeto criado no DEV na Prática Senior aulas 02 e 03 (aulas 01 e 02 de Fundamentos).
+
+## Aula 01 - Maven e Spring Core
+
+- [Voltar para branch master](https://github.com/SeniorSA/devnapratica-api-pedidos/tree/master)
 
 ### Objetivo
-Desenvolver uma API RESTful que permita a criação de pedidos por um cliente cadastrado na aplicação.
+Desenvolver uma API RESTful que permita a criação de pedidos por um cliente cadastrado na aplicação para aplicar os conceitos aprendidos em aula. 
 
 **Funcionalidades:**
 - Cadastro de cliente;
@@ -40,9 +44,8 @@ Desenvolver uma API RESTful que permita a criação de pedidos por um cliente ca
 | Alterar | `PUT` | **/v1/clientes/{clienteId}** | 200 |
 | Excluir/Deletar | `DELETE` | **/v1/clientes/{clienteId}** | 204 |
 
+<br> 
 ------
-
-Gian Pasqualini <gian.pasqualini@senior.com.br>
 
 Luiz Felipe Nazari <luiz.nazari@senior.com.br>
 
