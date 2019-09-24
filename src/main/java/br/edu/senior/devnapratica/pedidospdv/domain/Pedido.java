@@ -2,12 +2,17 @@ package br.edu.senior.devnapratica.pedidospdv.domain;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class Pedido {
 
 	private Long id;
 
+	@NotNull
 	private Cliente cliente;
 
+	@NotEmpty
 	private List<ItemPedido> itens;
 
 	private StatusPedido status;

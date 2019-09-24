@@ -1,45 +1,52 @@
 package br.edu.senior.devnapratica.pedidospdv.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.senior.devnapratica.pedidospdv.dao.ClienteDAO;
-import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+
+import br.edu.senior.devnapratica.pedidospdv.dao.ProdutoDAO;
+import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
+import br.edu.senior.devnapratica.pedidospdv.util.ValidacaoUtils;
 
 @Service
-public class ClienteService {
+public class ProdutoService {
 
 	@Autowired
-	private ClienteDAO clienteDAO;
+	private ProdutoDAO produtoDAO;
 
-	public List<Cliente> buscarTodos() {
-		return clienteDAO.buscarTodos();
+	@Autowired
+	private Validator validator;
+
+	public List<Produto> buscarTodos() {
+		return produtoDAO.buscarTodos();
 	}
 
-	public Optional<Cliente> buscar(Long clienteId) {
-		return clienteDAO.buscar(clienteId);
+	public Optional<Produto> buscar(Long produtoId) {
+		return produtoDAO.buscar(produtoId);
 	}
 
-	public Cliente salvar(Cliente cliente) {
-		boolean temClienteComMesmoEmail = clienteDAO.buscarTodos().stream()
-				.anyMatch(outroCliente -> outroCliente != null && outroCliente.getEmail().equals(cliente.getEmail()));
-
-		if (temClienteComMesmoEmail) {
-			throw new IllegalArgumentException("Já existe um cliente com este e-mail!");
+	public Produto salvar(Produto produto) {
+		Set<ConstraintViolation<Produto>> validationMessages = validator.validate(produto);
+		if (!validationMessages.isEmpty()) {
+			ValidacaoUtils.lancarErroValidacao(validationMessages);
 		}
 
-		return clienteDAO.salvar(cliente);
+		return produtoDAO.salvar(produto);
 	}
 
-	public Cliente alterar(Cliente cliente) {
-		return clienteDAO.alterar(cliente);
+	public Produto alterar(Produto produto) {
+		return produtoDAO.alterar(produto);
 	}
 
-	public void excluir(Long clienteId) {
-		clienteDAO.excluir(clienteId);
+	public void excluir(Long produtoId) {
+		produtoDAO.excluir(produtoId);
 	}
 
 }

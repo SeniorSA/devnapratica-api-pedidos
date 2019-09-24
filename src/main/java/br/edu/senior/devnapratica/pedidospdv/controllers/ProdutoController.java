@@ -3,58 +3,60 @@ package br.edu.senior.devnapratica.pedidospdv.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
-import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
-import br.edu.senior.devnapratica.pedidospdv.services.ClienteService;
+import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
+import br.edu.senior.devnapratica.pedidospdv.services.ProdutoService;
 
 @RestController
-public class PedidoController {
+public class ProdutoController {
 
 	@Autowired
-	private ClienteService clienteService;
-	
-	@RequestMapping(method = RequestMethod.GET, path = "/v1/clientes")
-	public ResponseEntity<List<Cliente>> listar() {
-		List<Cliente> clientes = clienteService.buscarTodos();
-		return ResponseEntity.ok(clientes);
+	private ProdutoService produtoService;
+
+	@GetMapping("/v1/produtos")
+	public ResponseEntity<List<Produto>> listar() {
+		List<Produto> produtos = produtoService.buscarTodos();
+		return ResponseEntity.ok(produtos);
 	}
-	
-	@RequestMapping(method = RequestMethod.POST, path = "/v1/clientes")
-	public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
-		Cliente clienteSalvo = clienteService.salvar(cliente);
-		return new ResponseEntity<>(clienteSalvo, HttpStatus.CREATED);
+
+	@PostMapping("/v1/produtos")
+	public ResponseEntity<Produto> salvar(@RequestBody Produto produto) {
+		Produto produtoSalvo = produtoService.salvar(produto);
+		return new ResponseEntity<>(produtoSalvo, HttpStatus.CREATED);
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, path = "/v1/clientes/{clienteId}")
-	public ResponseEntity<Cliente> buscar(@PathVariable("clienteId") Long idDoCliente) {
-		Optional<Cliente> clienteOpt = clienteService.buscar(idDoCliente);
-		
-		if(clienteOpt.isPresent()) {
-			return ResponseEntity.ok(clienteOpt.get());
+
+	@GetMapping("/v1/produtos/{produtoId}")
+	public ResponseEntity<Produto> buscar(Long produtoId) {
+		Optional<Produto> produtoOpt = produtoService.buscar(produtoId);
+
+		if(produtoOpt.isPresent()) {
+			return ResponseEntity.ok(produtoOpt.get());
 		}
-		
+
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
-	@RequestMapping(method = RequestMethod.PUT, path = "/v1/clientes/{cliente.id}")
-	public ResponseEntity<Cliente> alterar(@RequestBody Cliente cliente) {
-		Cliente clienteAlterado = clienteService.alterar(cliente);
-		return new ResponseEntity<Cliente>(clienteAlterado, HttpStatus.OK);
+
+	@PutMapping("/v1/produtos/{produto.id}")
+	public ResponseEntity<Produto> alterar(@RequestBody Produto produto) {
+		Produto produtoAlterado = produtoService.alterar(produto);
+		return new ResponseEntity<Produto>(produtoAlterado, HttpStatus.OK);
 	}
-	
+
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@RequestMapping(method = RequestMethod.DELETE, path = "/v1/clientes/{clienteId}")
-	public void remover(@PathVariable("clienteId") Long clienteId) {
-		clienteService.excluir(clienteId);
+	@DeleteMapping("/v1/produtos/{produtoId}")
+	public void remover(@PathVariable("produtoId") Long produtoId) {
+		produtoService.excluir(produtoId);
 	}
 	
 }

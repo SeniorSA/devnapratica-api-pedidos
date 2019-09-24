@@ -48,7 +48,7 @@ public class ClienteController {
 	@RequestMapping(method = RequestMethod.PUT, path = "/v1/clientes/{cliente.id}")
 	public ResponseEntity<Cliente> alterar(@RequestBody Cliente cliente) {
 		Cliente clienteAlterado = clienteService.alterar(cliente);
-		return new ResponseEntity<Cliente>(clienteAlterado, HttpStatus.OK);
+		return new ResponseEntity<>(clienteAlterado, HttpStatus.OK);
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
