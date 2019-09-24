@@ -9,10 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.edu.senior.devnapratica</groupId>
-	<artifactId>pedidos-pdv</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>pedidos-pdv</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>api-pedidos</artifactId>
+	<version>1.0.0</version>
+	<name>devnapratica-api-pedidos</name>
+	<description>
+		API RESTful para a criação de pedidos por clientes.
+		Desenvolvido como projeto prático durante as aulas de Maven, Spring Core, Spring Data e testes.
+	</description>
 
 	<packaging>jar</packaging>
 
