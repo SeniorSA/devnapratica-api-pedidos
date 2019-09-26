@@ -79,7 +79,7 @@ public class PedidoService {
 
 			Optional<Produto> produtoOpt = produtoDAO.buscar(itemPedido.getProduto().getId());
 			if (!produtoOpt.isPresent()) {
-				throw new IllegalArgumentException("O cliente " + pedido.getCliente().getId() + " não existe!");
+				throw new IllegalArgumentException("O produto " + itemPedido.getProduto().getId() + " não existe!");
 			}
 			itemPedido.setProduto(produtoOpt.get());
 		}

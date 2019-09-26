@@ -1,0 +1,1406 @@
+{
+	"info": {
+		"_postman_id": "a641e889-4d5d-46d7-ad01-6bd64fd69d95",
+		"name": "[Dev na Prática] - API Pedidos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Litar todos os clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8802/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /clientes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:36:26 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nome\": \"Luiz\",\n        \"email\": \"luiz.nazari@senior.com.br\",\n        \"dataNascimento\": \"1994-11-28\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Salvar cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Jozevalda Aparecida\",\n\t\"email\": \"jozevalda.aparecida@senior.com.br\",\n\t\"dataNascimento\": \"1968-04-22\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Salvar cliente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nome\": \"Luiz\",\n    \"email\": \"luiz.nazari@senior.com.br\",\n    \"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						{
+							"name": "http://localhost:8080/v1/clientes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:48:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Já existe um cliente com este e-mail!"
+						}
+					]
+				},
+				{
+					"name": "Salvar cliente [2]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Felizbino da Silva\",\n\t\"email\": \"felizbino.silva@senior.com.br\",\n\t\"dataNascimento\": \"2001-01-01\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http://localhost:8080/v1/clientes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:48:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Já existe um cliente com este e-mail!"
+						},
+						{
+							"name": "Salvar cliente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nome\": \"Luiz\",\n    \"email\": \"luiz.nazari@senior.com.br\",\n    \"dataNascimento\": \"1994-11-28\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8802/v1/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Litar todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /clientes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:36:26 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nome\": \"Luiz\",\n        \"email\": \"luiz.nazari@senior.com.br\",\n        \"dataNascimento\": \"1994-11-28\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Salvar produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricao\": \"Dragon Age: Inquisition - Edição Jogo do Ano\",\n\t\"valor\": 135.90\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Salvar cliente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nome\": \"Luiz\",\n    \"email\": \"luiz.nazari@senior.com.br\",\n    \"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						{
+							"name": "http://localhost:8080/v1/clientes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:48:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Já existe um cliente com este e-mail!"
+						}
+					]
+				},
+				{
+					"name": "Salvar produto [2]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricao\": \"Shadow of The Colossus\",\n\t\"valor\": 71.50\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Salvar cliente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nome\": \"Luiz\",\n    \"email\": \"luiz.nazari@senior.com.br\",\n    \"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						{
+							"name": "http://localhost:8080/v1/clientes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:48:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Já existe um cliente com este e-mail!"
+						}
+					]
+				},
+				{
+					"name": "Salvar produto [3]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricao\": \"Hollow Knight Voidheart Edition\",\n\t\"valor\": 45.90\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Salvar cliente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nome\": \"Luiz\",\n    \"email\": \"luiz.nazari@senior.com.br\",\n    \"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						{
+							"name": "http://localhost:8080/v1/clientes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:48:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "Já existe um cliente com este e-mail!"
+						}
+					]
+				},
+				{
+					"name": "Buscar produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar produto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar produto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/produtos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Litar todos os pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /clientes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/v1/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 18:36:26 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nome\": \"Luiz\",\n        \"email\": \"luiz.nazari@senior.com.br\",\n        \"dataNascimento\": \"1994-11-28\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Realizar pedido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cliente\": {\n\t\t\"id\": 1\n\t},\n\t\"itens\": [\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"quantidade\": 8.0\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Realizar pedido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cliente\": {\n\t\t\"id\": 1\n\t},\n\t\"itens\": [\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"quantidade\": 8.0\n\t\t},\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 2\n\t\t\t},\n\t\t\t\"quantidade\": 0.42\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/pedidos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"pedidos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"cliente\": {\n        \"id\": 1,\n        \"nome\": \"Luiz\",\n        \"email\": \"luiz.nazari@senior.com.br\",\n        \"dataNascimento\": \"1994-11-28\"\n    },\n    \"itens\": [\n        {\n            \"id\": 1,\n            \"produto\": {\n                \"id\": 2,\n                \"descricao\": \"lol\",\n                \"valor\": 423\n            },\n            \"quantidade\": 8\n        },\n        {\n            \"id\": 2,\n            \"produto\": {\n                \"id\": 2,\n                \"descricao\": \"lol\",\n                \"valor\": 423\n            },\n            \"quantidade\": 0.42\n        }\n    ],\n    \"status\": \"PENDENTE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Realizar pedido [2]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cliente\": {\n\t\t\"id\": 2\n\t},\n\t\"itens\": [\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 2\n\t\t\t},\n\t\t\t\"quantidade\": 1\n\t\t},\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 4\n\t\t\t},\n\t\t\t\"quantidade\": 0.42\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Realizar pedido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cliente\": {\n\t\t\"id\": 1\n\t},\n\t\"itens\": [\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"quantidade\": 8.0\n\t\t},\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 2\n\t\t\t},\n\t\t\t\"quantidade\": 0.42\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/pedidos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"pedidos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"cliente\": {\n        \"id\": 1,\n        \"nome\": \"Luiz\",\n        \"email\": \"luiz.nazari@senior.com.br\",\n        \"dataNascimento\": \"1994-11-28\"\n    },\n    \"itens\": [\n        {\n            \"id\": 1,\n            \"produto\": {\n                \"id\": 2,\n                \"descricao\": \"lol\",\n                \"valor\": 423\n            },\n            \"quantidade\": 8\n        },\n        {\n            \"id\": 2,\n            \"produto\": {\n                \"id\": 2,\n                \"descricao\": \"lol\",\n                \"valor\": 423\n            },\n            \"quantidade\": 0.42\n        }\n    ],\n    \"status\": \"PENDENTE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Realizar pedido [3]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cliente\": {\n\t\t\"id\": 1\n\t},\n\t\"itens\": [\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 2\n\t\t\t},\n\t\t\t\"quantidade\": 3.22\n\t\t},\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 3\n\t\t\t},\n\t\t\t\"quantidade\": 1.33\n\t\t},\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"quantidade\": 2.11\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Realizar pedido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cliente\": {\n\t\t\"id\": 1\n\t},\n\t\"itens\": [\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"quantidade\": 8.0\n\t\t},\n\t\t{\n\t\t\t\"produto\": {\n\t\t\t\t\"id\": 2\n\t\t\t},\n\t\t\t\"quantidade\": 0.42\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/pedidos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"pedidos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"cliente\": {\n        \"id\": 1,\n        \"nome\": \"Luiz\",\n        \"email\": \"luiz.nazari@senior.com.br\",\n        \"dataNascimento\": \"1994-11-28\"\n    },\n    \"itens\": [\n        {\n            \"id\": 1,\n            \"produto\": {\n                \"id\": 2,\n                \"descricao\": \"lol\",\n                \"valor\": 423\n            },\n            \"quantidade\": 8\n        },\n        {\n            \"id\": 2,\n            \"produto\": {\n                \"id\": 2,\n                \"descricao\": \"lol\",\n                \"valor\": 423\n            },\n            \"quantidade\": 0.42\n        }\n    ],\n    \"status\": \"PENDENTE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar Pedido Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/v1/pedidos/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"pedidos",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Sep 2019 22:55:31 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Alterar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar pedido",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
