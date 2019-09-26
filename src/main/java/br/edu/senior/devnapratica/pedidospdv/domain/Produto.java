@@ -2,18 +2,29 @@ package br.edu.senior.devnapratica.pedidospdv.domain;
 
 import org.hibernate.validator.constraints.Range;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "produto")
 public class Produto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty
+	@NotEmpty(message = "A descrição do produto precisa ser preenchida!")
+	@Column(length = 255)
 	private String descricao;
 
-	@NotNull
-	@Range(min = 1)
+	@NotNull(message = "O valor do produto precisa ser preenchido!")
+	@Range(min = 1, message = "O valor do produto precisa ser maior que zero!")
 	private Double valor;
 
 	public Long getId() {
@@ -39,5 +50,5 @@ public class Produto {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	
+
 }
