@@ -45,7 +45,9 @@
 				"3a4437c0-eff8-4db1-8bcc-fc01826ea498",
 				"446f6642-8104-4c8b-adc7-25e36666f266",
 				"dda0cc07-9d9a-4219-b561-a1b64df4b11c",
-				"f68c1f2f-9bba-402d-9780-b62cd4e3d2b1"
+				"f68c1f2f-9bba-402d-9780-b62cd4e3d2b1",
+				"0cbd2ad0-25de-4052-82b1-ee0ede1ce17a",
+				"aa81f423-4ab2-445b-be48-09a5a3cb059b"
 			],
 			"folders_order": []
 		},
@@ -86,6 +88,32 @@
 			"auth": null,
 			"events": null,
 			"folder": "b27371ad-44dc-404c-b072-f9fb9f79a429",
+			"pathVariables": {}
+		},
+		{
+			"id": "0cbd2ad0-25de-4052-82b1-ee0ede1ce17a",
+			"name": "Finalizar pedido",
+			"url": "http://localhost:8802/v1/pedidos/1/finalizar",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"description": "",
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"type": "text",
+					"value": "application/json"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "ce9d8c56-8219-4546-822e-0c96ec21b87e",
+			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		},
 		{
@@ -888,6 +916,32 @@
 			"events": null,
 			"folder": "0c3190dc-3d9e-4770-b2b4-b431945995a9",
 			"rawModeData": "{\n\t\"id\": \"123\",\n\t\"nome\": \"Luiz\",\n\t\"email\": \"luiz.nazari@senior.com.br\",\n\t\"dataNascimento\": \"1994-11-28\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "aa81f423-4ab2-445b-be48-09a5a3cb059b",
+			"name": "Cancelar pedido",
+			"url": "http://localhost:8802/v1/pedidos/1/cancelar",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"description": "",
+					"key": "Content-Type",
+					"name": "Content-Type",
+					"type": "text",
+					"value": "application/json"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": null,
+			"folder": "ce9d8c56-8219-4546-822e-0c96ec21b87e",
 			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		},

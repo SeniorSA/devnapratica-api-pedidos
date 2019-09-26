@@ -1399,6 +1399,64 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Finalizar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos/1/finalizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos",
+								"1",
+								"finalizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8802/v1/pedidos/1/cancelar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8802",
+							"path": [
+								"v1",
+								"pedidos",
+								"1",
+								"cancelar"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

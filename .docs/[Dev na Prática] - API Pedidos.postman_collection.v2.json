@@ -982,6 +982,38 @@
 						"url": "http://localhost:8802/v1/pedidos/1"
 					},
 					"response": []
+				},
+				{
+					"name": "Finalizar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": "http://localhost:8802/v1/pedidos/1/finalizar"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": "http://localhost:8802/v1/pedidos/1/cancelar"
+					},
+					"response": []
 				}
 			]
 		}
