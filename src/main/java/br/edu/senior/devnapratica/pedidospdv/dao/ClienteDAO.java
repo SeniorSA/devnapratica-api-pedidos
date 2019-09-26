@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
 
 @Component
+@Deprecated
 public class ClienteDAO {
 
 	private static AtomicLong idSequence = new AtomicLong(1L);

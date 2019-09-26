@@ -1,4 +1,4 @@
-package br.edu.senior.devnapratica.pedidospdv.services;
+package br.edu.senior.devnapratica.pedidospdv.dao.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,39 +6,41 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.senior.devnapratica.pedidospdv.dao.ClienteDAO;
 import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
-import br.edu.senior.devnapratica.pedidospdv.repository.ClienteRepository;
 
 @Service
-public class ClienteService {
+@Deprecated
+public class ClienteServiceDAO {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ClienteDAO clienteDAO;
 
 	public List<Cliente> buscarTodos() {
-		return clienteRepository.findAll();
+		return clienteDAO.buscarTodos();
 	}
 
 	public Optional<Cliente> buscar(Long clienteId) {
-		return clienteRepository.findById(clienteId);
+		return clienteDAO.buscar(clienteId);
 	}
 
 	public Cliente salvar(Cliente cliente) {
-		boolean temClienteComMesmoEmail = clienteRepository.countByEmail(cliente.getEmail()) > 0;
+		boolean temClienteComMesmoEmail = clienteDAO.buscarTodos().stream()
+				.anyMatch(outroCliente -> outroCliente != null && outroCliente.getEmail().equals(cliente.getEmail()));
 
 		if (temClienteComMesmoEmail) {
 			throw new IllegalArgumentException("Já existe um cliente com este e-mail!");
 		}
 
-		return clienteRepository.save(cliente);
+		return clienteDAO.salvar(cliente);
 	}
 
 	public Cliente alterar(Cliente cliente) {
-		return clienteRepository.save(cliente);
+		return clienteDAO.alterar(cliente);
 	}
 
 	public void excluir(Long clienteId) {
-		clienteRepository.deleteById(clienteId);
+		clienteDAO.excluir(clienteId);
 	}
 
 }

@@ -1,4 +1,4 @@
-package br.edu.senior.devnapratica.pedidospdv.services;
+package br.edu.senior.devnapratica.pedidospdv.dao.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,48 +6,41 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.senior.devnapratica.pedidospdv.dao.ClienteDAO;
+import br.edu.senior.devnapratica.pedidospdv.dao.PedidoDAO;
+import br.edu.senior.devnapratica.pedidospdv.dao.ProdutoDAO;
 import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
 import br.edu.senior.devnapratica.pedidospdv.domain.ItemPedido;
 import br.edu.senior.devnapratica.pedidospdv.domain.Pedido;
 import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
 import br.edu.senior.devnapratica.pedidospdv.domain.StatusPedido;
-import br.edu.senior.devnapratica.pedidospdv.repository.ClienteRepository;
-import br.edu.senior.devnapratica.pedidospdv.repository.PedidoRepository;
-import br.edu.senior.devnapratica.pedidospdv.repository.ProdutoRepository;
 
 @Service
-public class PedidoService {
+@Deprecated
+public class PedidoServiceDAO {
 
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private PedidoDAO pedidoDAO;
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ClienteDAO clienteDAO;
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoDAO produtoDAO;
 
 	public List<Pedido> buscarTodos() {
-		return pedidoRepository.findAll();
+		return pedidoDAO.buscarTodos();
 	}
 
 	public Optional<Pedido> buscar(Long pedidoId) {
-		return pedidoRepository.findById(pedidoId);
+		return pedidoDAO.buscar(pedidoId);
 	}
 
 	public Pedido salvar(Pedido pedido) {
 		this.validarPedido(pedido);
 
 		pedido.setStatus(StatusPedido.PENDENTE);
-		
-		Double valorTotalPedido = 0.0;
-		for (ItemPedido item : pedido.getItens()) {
-			item.setPedido(pedido);
-			valorTotalPedido += item.getQuantidade() * item.getProduto().getValor();
-		}
-		pedido.setValorTotal(valorTotalPedido);
-		
-		pedidoRepository.save(pedido);
+		pedidoDAO.salvar(pedido);
 
 		return pedido;
 	}
@@ -56,23 +49,17 @@ public class PedidoService {
 		if (pedido.getStatus() != StatusPedido.PENDENTE){
 			throw new IllegalArgumentException("O pedido já foi finalizado ou cancelado e não pode ser alterado.");
 		}
-		
-		Double valorTotalPedido = 0.0;
-		for (ItemPedido item : pedido.getItens()) {
-			item.setPedido(pedido);
-			valorTotalPedido += item.getQuantidade() * item.getProduto().getValor();
-		}
-		pedido.setValorTotal(valorTotalPedido);
 
-		return pedidoRepository.save(pedido);
+		this.validarPedido(pedido);
+		return pedidoDAO.alterar(pedido);
 	}
-	
+
 	private void validarPedido(Pedido pedido) {
 		if (pedido.getCliente() == null) {
 			throw new IllegalArgumentException("O cliente não pode ser nulo!");
 		}
 
-		Optional<Cliente> clienteOpt = clienteRepository.findById(pedido.getCliente().getId());
+		Optional<Cliente> clienteOpt = clienteDAO.buscar(pedido.getCliente().getId());
 		if (!clienteOpt.isPresent()) {
 			throw new IllegalArgumentException("O cliente " + pedido.getCliente().getId() + " não existe!");
 		}
@@ -87,7 +74,7 @@ public class PedidoService {
 				throw new IllegalArgumentException("O produto não pode ser nulo!");
 			}
 
-			Optional<Produto> produtoOpt = produtoRepository.findById(itemPedido.getProduto().getId());
+			Optional<Produto> produtoOpt = produtoDAO.buscar(itemPedido.getProduto().getId());
 			if (!produtoOpt.isPresent()) {
 				throw new IllegalArgumentException("O produto " + itemPedido.getProduto().getId() + " não existe!");
 			}
@@ -96,7 +83,7 @@ public class PedidoService {
 	}
 
 	public void excluir(Long pedidoId) {
-		pedidoRepository.deleteById(pedidoId);
+		pedidoDAO.excluir(pedidoId);
 	}
 
 }

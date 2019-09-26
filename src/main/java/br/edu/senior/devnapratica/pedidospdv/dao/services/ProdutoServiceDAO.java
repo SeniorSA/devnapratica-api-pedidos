@@ -1,4 +1,4 @@
-package br.edu.senior.devnapratica.pedidospdv.services;
+package br.edu.senior.devnapratica.pedidospdv.dao.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,25 +10,26 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.senior.devnapratica.pedidospdv.dao.ProdutoDAO;
 import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
-import br.edu.senior.devnapratica.pedidospdv.repository.ProdutoRepository;
 import br.edu.senior.devnapratica.pedidospdv.util.ValidacaoUtils;
 
 @Service
-public class ProdutoService {
+@Deprecated
+public class ProdutoServiceDAO {
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoDAO produtoDAO;
 
 	@Autowired
 	private Validator validator;
 
 	public List<Produto> buscarTodos() {
-		return produtoRepository.findAll();
+		return produtoDAO.buscarTodos();
 	}
 
 	public Optional<Produto> buscar(Long produtoId) {
-		return produtoRepository.findById(produtoId);
+		return produtoDAO.buscar(produtoId);
 	}
 
 	public Produto salvar(Produto produto) {
@@ -37,15 +38,15 @@ public class ProdutoService {
 			ValidacaoUtils.lancarErroValidacao(validationMessages);
 		}
 
-		return produtoRepository.save(produto);
+		return produtoDAO.salvar(produto);
 	}
 
 	public Produto alterar(Produto produto) {
-		return produtoRepository.save(produto);
+		return produtoDAO.alterar(produto);
 	}
 
 	public void excluir(Long produtoId) {
-		produtoRepository.deleteById(produtoId);
+		produtoDAO.excluir(produtoId);
 	}
 
 }

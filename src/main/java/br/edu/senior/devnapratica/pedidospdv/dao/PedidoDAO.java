@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import br.edu.senior.devnapratica.pedidospdv.domain.Pedido;
 
 @Component
+@Deprecated
 public class PedidoDAO {
 	
 	@Autowired
