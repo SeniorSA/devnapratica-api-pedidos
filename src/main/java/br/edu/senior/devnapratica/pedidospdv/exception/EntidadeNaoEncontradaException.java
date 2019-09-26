@@ -6,7 +6,7 @@ public class EntidadeNaoEncontradaException extends RuntimeException {
 
 	public EntidadeNaoEncontradaException(Class<?> classe, Object id) {
 		super("Nenhuma entidade do tipo " + classe.getSimpleName() +
-				" encontrada para a id \"" + id + "\".");
+				" encontrada para a id '" + id + "'.");
 	}
 	
 }

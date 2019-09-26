@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
+import br.edu.senior.devnapratica.pedidospdv.exception.ErroValidacaoException;
 import br.edu.senior.devnapratica.pedidospdv.repository.ProdutoRepository;
-import br.edu.senior.devnapratica.pedidospdv.util.ValidacaoUtils;
 
 @Service
 public class ProdutoService {
@@ -34,7 +34,7 @@ public class ProdutoService {
 	public Produto salvar(Produto produto) {
 		Set<ConstraintViolation<Produto>> validationMessages = validator.validate(produto);
 		if (!validationMessages.isEmpty()) {
-			ValidacaoUtils.lancarErroValidacao(validationMessages);
+			throw new ErroValidacaoException(validationMessages);
 		}
 
 		return produtoRepository.save(produto);
