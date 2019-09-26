@@ -22,7 +22,7 @@
 
 	<properties>
 		<java.version>8</java.version>
-		<postgresql.version>9.1-901.jdbc4</postgresql.version>
+		<postgresql.version>42.2.8</postgresql.version>
 		<hibernate.validator.version>6.0.10.Final</hibernate.validator.version>
 	</properties>
 
@@ -38,9 +38,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
 		</dependency>
 
 		<dependency>

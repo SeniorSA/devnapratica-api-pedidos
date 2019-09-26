@@ -2,11 +2,13 @@ package br.edu.senior.devnapratica.pedidospdv.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -22,13 +24,17 @@ public class ItemPedido {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotNull(message = "O item precisa estar relacionado a um pedido!")
 	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(
 		name = "id_pedido",
 		nullable = false,
 		foreignKey = @ForeignKey(name = "fk_item_pedido_pedido"))
 	private Pedido pedido;
 
+	@NotNull(message = "O item precisa estar relacionado a um produto!")
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(
 			name = "id_produto",
 			nullable = false,

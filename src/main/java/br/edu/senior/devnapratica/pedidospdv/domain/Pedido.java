@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 import javax.validation.constraints.NotEmpty;
@@ -26,7 +26,7 @@ public class Pedido {
 	private Long id;
 
 	@NotNull(message = "O pedido precisa ter um cliente associado!")
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(
 			name = "id_cliente",
 			nullable = false,
