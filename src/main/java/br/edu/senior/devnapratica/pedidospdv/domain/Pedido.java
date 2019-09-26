@@ -2,20 +2,49 @@ package br.edu.senior.devnapratica.pedidospdv.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.ForeignKey;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "pedido")
 public class Pedido {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull
+	@NotNull(message = "O pedido precisa ter um cliente associado!")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(
+			name = "id_cliente",
+			nullable = false,
+			foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
 	private Cliente cliente;
 
-	@NotEmpty
+	@NotEmpty(message = "O pedido precisa ter pelo menos um item!")
+	@OneToMany(
+			mappedBy = "pedido",
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL)
 	private List<ItemPedido> itens;
 
+	@Column(nullable = false)
 	private StatusPedido status;
+
+	@Column(name = "valor_total", nullable = false)
+	private Double valorTotal;
 
 	public Long getId() {
 		return id;
