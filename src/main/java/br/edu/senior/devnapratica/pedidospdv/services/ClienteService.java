@@ -14,6 +14,13 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteDAO clienteDAO;
+	
+	public ClienteService() {
+	}
+
+	ClienteService(ClienteDAO clienteDAO) {
+		this.clienteDAO = clienteDAO;
+	}
 
 	public List<Cliente> buscarTodos() {
 		return clienteDAO.buscarTodos();

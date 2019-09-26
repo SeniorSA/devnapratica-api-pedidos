@@ -2,12 +2,9 @@ package br.edu.senior.devnapratica.pedidospdv.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.validation.ConstraintViolation;
 
 import br.edu.senior.devnapratica.pedidospdv.dao.ClienteDAO;
 import br.edu.senior.devnapratica.pedidospdv.dao.PedidoDAO;
@@ -17,7 +14,6 @@ import br.edu.senior.devnapratica.pedidospdv.domain.ItemPedido;
 import br.edu.senior.devnapratica.pedidospdv.domain.Pedido;
 import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
 import br.edu.senior.devnapratica.pedidospdv.domain.StatusPedido;
-import br.edu.senior.devnapratica.pedidospdv.util.ValidacaoUtils;
 
 @Service
 public class PedidoService {
@@ -30,6 +26,15 @@ public class PedidoService {
 
 	@Autowired
 	private ProdutoDAO produtoDAO;
+	
+	public PedidoService() {
+	}
+
+	PedidoService(PedidoDAO pedidoDAO, ClienteDAO clienteDAO, ProdutoDAO produtoDAO) {
+		this.pedidoDAO = pedidoDAO;
+		this.clienteDAO = clienteDAO;
+		this.produtoDAO = produtoDAO;
+	}
 
 	public List<Pedido> buscarTodos() {
 		return pedidoDAO.buscarTodos();

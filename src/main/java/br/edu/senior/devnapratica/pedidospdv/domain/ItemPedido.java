@@ -44,5 +44,9 @@ public class ItemPedido {
 	public void setQuantidade(Double quantidade) {
 		this.quantidade = quantidade;
 	}
+
+	public Double getValor() {
+		return this.produto.getValor() * this.quantidade;
+	}
 		
 }
