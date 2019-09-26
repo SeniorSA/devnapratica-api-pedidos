@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 import javax.validation.constraints.NotEmpty;
@@ -22,7 +23,9 @@ import javax.validation.constraints.NotNull;
 public class Pedido {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "pedido_id_seq", sequenceName = "pedido_id_seq",
+		initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedido_id_seq")
 	private Long id;
 
 	@NotNull(message = "O pedido precisa ter um cliente associado!")
@@ -78,4 +81,12 @@ public class Pedido {
 		this.status = status;
 	}
 
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+	
 }
