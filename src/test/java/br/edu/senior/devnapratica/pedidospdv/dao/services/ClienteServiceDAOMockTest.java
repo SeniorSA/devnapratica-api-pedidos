@@ -1,5 +1,6 @@
-package br.edu.senior.devnapratica.pedidospdv.services;
+package br.edu.senior.devnapratica.pedidospdv.dao.services;
 
+import static org.junit.Assert.*;
 import static org.mockito.internal.verification.VerificationModeFactory.atLeastOnce;
 
 import java.util.Optional;
@@ -12,19 +13,19 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import br.edu.senior.devnapratica.pedidospdv.dao.ClienteDAO;
 import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
-import br.edu.senior.devnapratica.pedidospdv.repository.ClienteRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ClienteServiceTestMock {
+public class ClienteServiceDAOMockTest {
 
 	@Mock
-	private ClienteRepository clienteRepository;
-	private ClienteService clienteService;
+	private ClienteDAO clienteDAO;
+	private ClienteServiceDAO clienteService;
 	
 	@Before
 	public void inicializar() {
-		this.clienteService = new ClienteService(this.clienteRepository);
+		this.clienteService = new ClienteServiceDAO(this.clienteDAO);
 	}
 	
 	@Test
@@ -33,7 +34,7 @@ public class ClienteServiceTestMock {
 		Cliente clienteMock = Mockito.mock(Cliente.class);
 		
 		Mockito
-			.when(clienteRepository.findById(1L))
+			.when(clienteDAO.buscar(1L))
 			.thenReturn(Optional.ofNullable(clienteMock));
 		
 		// Execução do código alvo do teste.
@@ -42,7 +43,7 @@ public class ClienteServiceTestMock {
 		// Verificação dos resultados.
 		Assert.assertTrue(clienteOpt.isPresent());
 		Assert.assertEquals(clienteMock, clienteOpt.get());
-		Mockito.verify(clienteRepository, atLeastOnce()).findById(1L);
+		Mockito.verify(clienteDAO, atLeastOnce()).buscar(1L);
 	}
 
 }

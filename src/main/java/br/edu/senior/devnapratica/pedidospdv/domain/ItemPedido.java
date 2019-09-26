@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ItemPedido {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "item_pedido_id_seq", sequenceName = "item_pedido_id_seq",
+		initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_pedido_id_seq")
 	private Long id;
 
 	@NotNull(message = "O item precisa estar relacionado a um pedido!")
