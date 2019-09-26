@@ -11,6 +11,7 @@ import br.edu.senior.devnapratica.pedidospdv.domain.ItemPedido;
 import br.edu.senior.devnapratica.pedidospdv.domain.Pedido;
 import br.edu.senior.devnapratica.pedidospdv.domain.Produto;
 import br.edu.senior.devnapratica.pedidospdv.domain.StatusPedido;
+import br.edu.senior.devnapratica.pedidospdv.exception.EntidadeNaoEncontradaException;
 import br.edu.senior.devnapratica.pedidospdv.repository.ClienteRepository;
 import br.edu.senior.devnapratica.pedidospdv.repository.PedidoRepository;
 import br.edu.senior.devnapratica.pedidospdv.repository.ProdutoRepository;
@@ -39,24 +40,24 @@ public class PedidoService {
 		this.validarPedido(pedido);
 
 		pedido.setStatus(StatusPedido.PENDENTE);
-		
+
 		Double valorTotalPedido = 0.0;
 		for (ItemPedido item : pedido.getItens()) {
 			item.setPedido(pedido);
 			valorTotalPedido += item.getQuantidade() * item.getProduto().getValor();
 		}
 		pedido.setValorTotal(valorTotalPedido);
-		
+
 		pedidoRepository.save(pedido);
 
 		return pedido;
 	}
 
 	public Pedido alterar(Pedido pedido) {
-		if (pedido.getStatus() != StatusPedido.PENDENTE){
+		if (pedido.getStatus() != StatusPedido.PENDENTE) {
 			throw new IllegalArgumentException("O pedido já foi finalizado ou cancelado e não pode ser alterado.");
 		}
-		
+
 		Double valorTotalPedido = 0.0;
 		for (ItemPedido item : pedido.getItens()) {
 			item.setPedido(pedido);
@@ -66,7 +67,7 @@ public class PedidoService {
 
 		return pedidoRepository.save(pedido);
 	}
-	
+
 	private void validarPedido(Pedido pedido) {
 		if (pedido.getCliente() == null) {
 			throw new IllegalArgumentException("O cliente não pode ser nulo!");
@@ -97,6 +98,34 @@ public class PedidoService {
 
 	public void excluir(Long pedidoId) {
 		pedidoRepository.deleteById(pedidoId);
+	}
+
+	public void finalizar(Long pedidoId) {
+		this.alterarStatus(pedidoId, StatusPedido.FINALIZADO);
+	}
+
+	public void cancelar(Long pedidoId) {
+		this.alterarStatus(pedidoId, StatusPedido.CANCELADO);
+	}
+
+	private void alterarStatus(Long pedidoId, StatusPedido novoStatus) {
+		Pedido pedido = buscarPedido(pedidoId);
+		if (!pedido.isPermiteEdicao()) {
+			throw new IllegalArgumentException("O pedido está com status " + pedido.getStatus() + " e não pode ser alterado.");
+		}
+		
+		pedido.setStatus(novoStatus);
+		pedidoRepository.save(pedido);
+	}
+
+	private Pedido buscarPedido(Long pedidoId) {
+		Optional<Pedido> pedidoOpt = pedidoRepository.findById(pedidoId);
+
+		if (!pedidoOpt.isPresent()) {
+			throw new EntidadeNaoEncontradaException(Pedido.class, pedidoId);
+		}
+
+		return pedidoOpt.get();
 	}
 
 }

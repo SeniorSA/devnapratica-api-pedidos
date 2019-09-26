@@ -89,4 +89,8 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 	
+	public boolean isPermiteEdicao() {
+		return this.status == StatusPedido.PENDENTE;
+	}
+	
 }

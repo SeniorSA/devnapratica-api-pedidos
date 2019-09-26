@@ -37,7 +37,7 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/v1/pedidos/{pedidoId}")
-	public ResponseEntity<Pedido> buscar(Long pedidoId) {
+	public ResponseEntity<Pedido> buscar(@PathVariable("pedidoId") Long pedidoId) {
 		Optional<Pedido> pedidoOpt = pedidoService.buscar(pedidoId);
 		
 		if(pedidoOpt.isPresent()) {
@@ -57,6 +57,16 @@ public class PedidoController {
 	@DeleteMapping("/v1/pedidos/{pedidoId}")
 	public void remover(@PathVariable("pedidoId") Long pedidoId) {
 		pedidoService.excluir(pedidoId);
+	}
+	
+	@PostMapping("/v1/pedidos/{pedidoId}/finalizar")
+	public void finalizar(@PathVariable("pedidoId") Long pedidoId) {
+		pedidoService.finalizar(pedidoId);
+	}
+	
+	@PostMapping("/v1/pedidos/{pedidoId}/cancelar")
+	public void cancelar(@PathVariable("pedidoId") Long pedidoId) {
+		pedidoService.cancelar(pedidoId);
 	}
 	
 }
