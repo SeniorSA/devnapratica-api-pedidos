@@ -45,10 +45,17 @@ public class ItemPedido {
 	private Produto produto;
 
 	@NotNull(message = "A quantidade do item precisa ser preenchida!")
-	@Range(min = 1, message = "A quantidade do item precisa ser maior que zero!")
+	@Range(min = 0, message = "A quantidade do item precisa ser maior que zero!")
 	@Column(nullable = false)
 	private Double quantidade;
 
+	public ItemPedido() {
+	}
+	
+	public ItemPedido(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

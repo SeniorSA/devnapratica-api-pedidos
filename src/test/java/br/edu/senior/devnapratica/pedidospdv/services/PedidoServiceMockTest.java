@@ -6,14 +6,14 @@ import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import br.edu.senior.devnapratica.pedidospdv.DomainTestHelper;
 import br.edu.senior.devnapratica.pedidospdv.domain.Cliente;
@@ -25,9 +25,8 @@ import br.edu.senior.devnapratica.pedidospdv.repository.ClienteRepository;
 import br.edu.senior.devnapratica.pedidospdv.repository.PedidoRepository;
 import br.edu.senior.devnapratica.pedidospdv.repository.ProdutoRepository;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class PedidoServiceIntegrationTest {
+@RunWith(MockitoJUnitRunner.class)
+public class PedidoServiceMockTest {
 
 	private Cliente cliente1;
 	private Cliente cliente2;
@@ -35,49 +34,39 @@ public class PedidoServiceIntegrationTest {
 	private Produto produto2;
 	private Produto produto3;
 
-	@Autowired
+	@Mock // A cada execução do teste, uma nova instância do mock é criada.
 	private PedidoRepository pedidoRepository;
 
-	@Autowired
+	@Mock // A cada execução do teste, uma nova instância do mock é criada.
 	private ClienteRepository clienteRepository;
 
-	@Autowired
+	@Mock // A cada execução do teste, uma nova instância do mock é criada.
 	private ProdutoRepository produtoRepository;
 
 	private PedidoService pedidoService;
 
 	@Before
 	public void init() {
+		this.criarClientes().forEach(
+				cliente -> Mockito.when(clienteRepository.findById(cliente.getId())).thenReturn(Optional.of(cliente)));
+		this.criarProdutos().forEach(
+				produto -> Mockito.when(produtoRepository.findById(produto.getId())).thenReturn(Optional.of(produto)));
+
 		this.pedidoService = new PedidoService(pedidoRepository, clienteRepository, produtoRepository);
 	}
 
-	@Before
-	public void inserirDadosNaBase() {
-		this.clienteRepository.saveAll(this.criarClientes());
-		this.produtoRepository.saveAll(this.criarProdutos());		
-	}
-	
-	@After
-	public void limparBase() {
-		this.pedidoRepository.deleteAll();
-		this.produtoRepository.deleteAll();
-		this.clienteRepository.deleteAll();
-	}
-
 	private List<Cliente> criarClientes() {
-		cliente1 = DomainTestHelper.criarCliente(null, "Luiz Nazari", "luiz.nazari@senior.com.br");
-		cliente2 = DomainTestHelper.criarCliente(null, "Matheus Raymundo", "matheus.raymundo@senior.com.br");
+		cliente1 = DomainTestHelper.criarCliente(1L, "Luiz Nazari", "luiz.nazari@senior.com.br");
+		cliente2 = DomainTestHelper.criarCliente(2L, "Matheus Raymundo", "matheus.raymundo@senior.com.br");
 		return Arrays.asList(cliente1, cliente2);
 	}
 
 	private List<Produto> criarProdutos() {
-		produto1 = DomainTestHelper.criarProduto(null, "The Witcher 3: Wild Hunt – Complete Edition", 191.90);
-		produto2 = DomainTestHelper.criarProduto(null, "Borderlands 3 - Edição Superdeluxe", 499.50);
-		produto3 = DomainTestHelper.criarProduto(null, "Darksiders: Furys Collection - War and Death", 143.50);
+		produto1 = DomainTestHelper.criarProduto(1L, "The Witcher 3: Wild Hunt – Complete Edition", 191.90);
+		produto2 = DomainTestHelper.criarProduto(2L, "Borderlands 3 - Edição Superdeluxe", 499.50);
+		produto3 = DomainTestHelper.criarProduto(3L, "Darksiders: Furys Collection - War and Death", 143.50);
 		return Arrays.asList(produto1, produto2, produto3);
 	}
-	
-	// =-=-=-=-=-=-=-=-=-=-=: Testes :=-=-=-=-=-=-=-=-=-=-=
 
 	@Test
 	public void deveRealizarPedidoComSucesso() {
@@ -97,14 +86,16 @@ public class PedidoServiceIntegrationTest {
 		// Realiza o pedido e salva no banco.
 		Pedido pedidoSalvo = pedidoService.salvar(pedido);
 		assertNotNull(pedidoSalvo);
-		assertNotNull(pedidoSalvo.getId());
-
-		// Busca o pedido no banco para ver se realmente salvou.
-		pedidoSalvo = pedidoRepository.findById(pedidoSalvo.getId()).get();
-
+		
+		// A id sempre será null pois o pedido não foi verdadeiramente salvo.
+		// assertNotNull(pedidoSalvo.getId());
+		
 		// Realiza as verificações sobre os atributos do pedido salvo.
 		assertEquals(StatusPedido.PENDENTE, pedidoSalvo.getStatus());
 		assertEquals(883.3, pedidoSalvo.getValorTotal(), 0.001);
+		
+		// Verifica se chamou o método para salvar o pedido.
+		Mockito.verify(pedidoRepository).save(pedido);
 	}
 
 	@Test
@@ -212,6 +203,7 @@ public class PedidoServiceIntegrationTest {
 		pedido.setItens(Arrays.asList(item1, item2, item3));
 		pedido.setCliente(cliente2);
 
+		Mockito.when(pedidoRepository.findById(pedido.getId())).thenReturn(Optional.of(pedido));
 		return this.pedidoService.salvar(pedido);
 	}
 

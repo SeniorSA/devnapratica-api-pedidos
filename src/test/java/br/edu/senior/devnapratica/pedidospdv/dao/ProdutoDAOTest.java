@@ -23,7 +23,5 @@ public class ProdutoDAOTest {
 		produtoDAO.salvar(new Produto());
 		assertEquals(2, produtoDAO.buscarTodos().size());
 	}
-
-	// outros testes...
 	
 }

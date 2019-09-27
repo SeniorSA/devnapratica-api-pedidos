@@ -49,6 +49,13 @@ public class Pedido {
 	@Column(name = "valor_total", nullable = false)
 	private Double valorTotal;
 
+	public Pedido() {
+	}
+	
+	public Pedido(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

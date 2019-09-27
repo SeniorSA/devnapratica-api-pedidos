@@ -30,6 +30,13 @@ public class Produto {
 	@Range(min = 1, message = "O valor do produto precisa ser maior que zero!")
 	private Double valor;
 
+	public Produto() {
+	}
+	
+	public Produto(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}

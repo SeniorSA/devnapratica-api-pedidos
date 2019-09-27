@@ -39,7 +39,7 @@ public class PedidoService {
 	}
 
 	public List<Pedido> buscarTodos() {
-		return pedidoRepository.findAll();
+		return pedidoRepository.findAllEager();
 	}
 
 	public Optional<Pedido> buscar(Long pedidoId) {

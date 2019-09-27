@@ -34,6 +34,13 @@ public class Cliente {
 	@Column(name = "data_nascimento", length = 255)
 	private LocalDate dataNascimento;
 
+	public Cliente() {
+	}
+	
+	public Cliente(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return this.id;
 	}
