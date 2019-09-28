@@ -18,35 +18,16 @@ import javax.persistence.ForeignKey;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "pedido")
 public class Pedido {
 
-	@Id
-	@SequenceGenerator(name = "pedido_id_seq", sequenceName = "pedido_id_seq",
-		initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedido_id_seq")
 	private Long id;
 
-	@NotNull(message = "O pedido precisa ter um cliente associado!")
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(
-			name = "id_cliente",
-			nullable = false,
-			foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
 	private Cliente cliente;
 
-	@NotEmpty(message = "O pedido precisa ter pelo menos um item!")
-	@OneToMany(
-			mappedBy = "pedido",
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
 	private List<ItemPedido> itens;
 
-	@Column(nullable = false)
 	private StatusPedido status;
 
-	@Column(name = "valor_total", nullable = false)
 	private Double valorTotal;
 
 	public Long getId() {
