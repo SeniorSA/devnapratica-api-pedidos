@@ -1,5 +1,6 @@
 package br.edu.senior.devnapratica.pedidospdv.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +21,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pedido")
-public class Pedido {
+public class Pedido implements Serializable {
+
+	private static final long serialVersionUID = -3341348058969989018L;
 
 	@Id
 	@SequenceGenerator(name = "pedido_id_seq", sequenceName = "pedido_id_seq",
@@ -29,7 +32,7 @@ public class Pedido {
 	private Long id;
 
 	@NotNull(message = "O pedido precisa ter um cliente associado!")
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(
 			name = "id_cliente",
 			nullable = false,
@@ -39,7 +42,7 @@ public class Pedido {
 	@NotEmpty(message = "O pedido precisa ter pelo menos um item!")
 	@OneToMany(
 			mappedBy = "pedido",
-			fetch = FetchType.EAGER,
+			fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL)
 	private List<ItemPedido> itens;
 

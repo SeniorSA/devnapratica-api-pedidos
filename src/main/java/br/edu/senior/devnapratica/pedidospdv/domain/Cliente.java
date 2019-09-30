@@ -1,5 +1,6 @@
 package br.edu.senior.devnapratica.pedidospdv.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -14,7 +15,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements Serializable {
+
+	private static final long serialVersionUID = -2351535257357244460L;
 
 	@Id
 	@SequenceGenerator(name = "cliente_id_seq", sequenceName = "cliente_id_seq",

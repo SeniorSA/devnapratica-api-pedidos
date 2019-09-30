@@ -43,7 +43,7 @@ public class PedidoService {
 	}
 
 	public Optional<Pedido> buscar(Long pedidoId) {
-		return pedidoRepository.findById(pedidoId);
+		return pedidoRepository.findByIdEager(pedidoId);
 	}
 
 	public Pedido salvar(Pedido pedido) {

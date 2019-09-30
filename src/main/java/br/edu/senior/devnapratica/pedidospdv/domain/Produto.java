@@ -1,6 +1,6 @@
 package br.edu.senior.devnapratica.pedidospdv.domain;
 
-import org.hibernate.validator.constraints.Range;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +12,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
+
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class Produto implements Serializable {
+
+	private static final long serialVersionUID = -8809786388814366757L;
 
 	@Id
 	@SequenceGenerator(name = "produto_id_seq", sequenceName = "produto_id_seq",
